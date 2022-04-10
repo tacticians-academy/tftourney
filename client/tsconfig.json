@@ -1,0 +1,18 @@
+{
+	"extends": "../tsconfig.base.json",
+	"compilerOptions": {
+		"jsx": "preserve", //TODO workaround lint error
+		"lib": [
+			"DOM",
+		],
+		"paths": {
+			"#c/*": ["../common/*"],
+			"#p/*": ["./*"],
+		},
+	},
+	"include": [
+		"./**/*.ts",
+		"./**/*.vue",
+		"../common/**/*.ts",
+	],
+}

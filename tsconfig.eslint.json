@@ -1,0 +1,15 @@
+{
+	"extends": "./tsconfig.base.json",
+	"compilerOptions": {
+		"paths": {
+			"#c/*": ["./common/*"],
+			"#p/*": ["./public/*"],
+			"#s/*": ["./server/*"],
+		},
+	},
+	"include": [
+		"./**/*.js",
+		"./**/*.ts",
+		"./**/*.vue",
+	],
+}

@@ -1,0 +1,15 @@
+{
+	"extends": "../tsconfig.base.json",
+	"compilerOptions": {
+		"outDir": "../~$dist",
+		"target": "ES2022",
+		"module": "ES2022",
+		"paths": {
+			"#c/*": ["../common/*"],
+			"#s/*": ["./*"],
+		},
+	},
+	"include": [
+		"./**/*.ts",
+	],
+}

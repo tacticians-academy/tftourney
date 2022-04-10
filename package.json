@@ -1,0 +1,64 @@
+{
+	"name": "tftourney",
+	"version": "0.1.0",
+	"private": true,
+	"type": "module",
+	"engines": {
+		"node": ">=16",
+		"pnpm": ">=6"
+	},
+	"scripts": {
+		"client:dev": "vite client",
+		"server:run": "tsc --project server/tsconfig.json && npm run start",
+		"client:build": "vite build client --emptyOutDir",
+		"server:build": "tsc --project server/tsconfig.json",
+		"server:deploy": "git -C ../tftourney-server-deploy reset --hard && tsc --project server/tsconfig.json && node build/deploy && echo `date` && git -C ../tftourney-server-deploy add . && git -C ../tftourney-server-deploy commit -m \"🚀\" && git -C ../tftourney-server-deploy push dokku main && echo `date`",
+		"start": "node --es-module-specifier-resolution=node './~$dist/server/index.js'"
+	},
+	"dependencies": {
+		"fastify": "^3.28.0",
+		"fastify-cors": "^6.0.3"
+	},
+	"devDependencies": {
+		"@ky-is/eslint-config": "^2.4.0",
+		"@types/node": "^16.11.26",
+		"@types/nodemailer": "^6.4.4",
+		"@vitejs/plugin-vue": "^2.3.1",
+		"@vue/compiler-sfc": "^3.2.31",
+		"@vue/eslint-config-typescript": "^10.0.0",
+		"autoprefixer": "^10.4.4",
+		"eslint": "^8.13.0",
+		"eslint-plugin-vue": "^8.6.0",
+		"fs-extra": "^10.0.1",
+		"postcss": "^8.4.12",
+		"tailwindcss": "^3.0.23",
+		"typescript": "^4.6.3",
+		"vite": "^2.9.1",
+		"vite-tsconfig-paths": "^3.4.1",
+		"vue": "^3.2.31",
+		"vue-router": "^4.0.14"
+	},
+	"eslintConfig": {
+		"extends": "@ky-is/eslint-config/vue-typescript",
+		"parserOptions": {
+			"sourceType": "module",
+			"project": [
+				"tsconfig.eslint.json"
+			]
+		}
+	},
+	"eslintIgnore": [
+		"~$dist"
+	],
+	"imports": {
+		"#c/*": "./~$dist/common/*",
+		"#s/*": "./~$dist/server/*"
+	},
+	"postcss": {
+		"plugins": {
+			"tailwindcss": {
+				"config": "./client/tailwind.config.ts"
+			}
+		}
+	}
+}
