@@ -1,5 +1,5 @@
 <template>
-	<div ref="containerEl" class="player-container w-full" :class="isPrimary ? undefined : 'pointer-events-none'" />
+	<div ref="containerEl" :class="isPrimary ? 'h-full' : 'player-secondary'" />
 </template>
 
 <script setup lang="ts">
@@ -15,7 +15,7 @@ const props = defineProps<{
 const containerEl = ref<Element | null>(null)
 
 watchEffect(() => {
-	if (containerEl.value && props.channelName) {
+	if (containerEl.value) {
 		const player = new Twitch.Embed(containerEl.value, {
 			width: '100%',
 			height: '100%',
@@ -31,11 +31,15 @@ watchEffect(() => {
 		})
 		player.addEventListener(Twitch.Player.READY, () => {
 			// player.setVolume(1)
-			player.setMuted(true)
+			player.setMuted(!props.isPrimary)
 		})
 	}
 })
 </script>
 
 <style lang="postcss">
+.player-secondary {
+	@apply overflow-y-hidden pointer-events-none;
+	max-width: 400px;
+}
 </style>
