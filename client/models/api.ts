@@ -33,14 +33,14 @@ async function ajax<Response>(endpointComponents: [string, string?, string?], bo
 
 export const sampleData = {
 	perspectives: [
-		'Mortdog',
 		'TeamfightTactics',
-		'TeamfightTactics',
-		'TeamfightTactics',
-		'TeamfightTactics',
-		'TeamfightTactics',
-		'TeamfightTactics',
-		'TeamfightTactics',
-		'TeamfightTactics',
+		'inikoiniko',
+		'ramblinnn',
+		'greenbeing',
+		'slooperx',
+		'ging',
+		'eusouolucastft',
+		// 'TeamfightTactics',
+		// 'TeamfightTactics',
 	],
 }
