@@ -1,11 +1,13 @@
 <template>
-	<div ref="containerEl" :class="isPrimary ? 'h-full' : 'player-secondary'" />
+	<div ref="containerEl" :class="isPrimary ? 'player-primary' : 'player-secondary'" />
 </template>
 
 <script setup lang="ts">
 import { defineProps, ref, watchEffect } from 'vue'
 
 import { getMax } from '#c/utils'
+
+import { state } from '#p/models/store'
 
 const props = defineProps<{
 	channelName: string
@@ -21,25 +23,33 @@ watchEffect(() => {
 			height: '100%',
 			channel: props.channelName,
 		})
+		state.players.push(player)
 		player.addEventListener(Twitch.Player.PLAY, () => {
 			if (!props.isPrimary) {
-				const lowestBitrate: any = getMax(false, player.getQualities(), 'bitrate')
-				if (lowestBitrate != null && player.getQuality() !== lowestBitrate.group) {
-					player.setQuality(lowestBitrate.group)
+				if (state.lockAudioPerspective != null ? state.lockAudioPerspective !== props.channelName : player.getMuted() === true) {
+					console.log(player.getQualities())
+					const lowestBitrate: any = getMax(false, player.getQualities(), 'bitrate')
+					if (lowestBitrate != null && player.getQuality() !== lowestBitrate.group) {
+						player.setQuality(lowestBitrate.group)
+					}
 				}
 			}
 		})
 		player.addEventListener(Twitch.Player.READY, () => {
-			// player.setVolume(1)
-			player.setMuted(!props.isPrimary)
+			if (state.lockAudioPerspective != null) {
+				player.setMuted(state.lockAudioPerspective !== props.channelName)
+			}
 		})
 	}
 })
 </script>
 
 <style lang="postcss">
+.player-primary {
+	@apply h-full;
+}
+
 .player-secondary {
-	@apply overflow-y-hidden pointer-events-none;
-	max-width: 400px;
+	@apply h-[1024px] pointer-events-auto w-full;
 }
 </style>

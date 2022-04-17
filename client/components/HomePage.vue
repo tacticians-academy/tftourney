@@ -11,5 +11,7 @@
 <script setup lang="ts">
 import TwitchTeleport from '#p/components/TwitchTeleport.vue'
 
-const secondaryHeight = `${100 / 8 / 16 * 9}vw`
+import { sampleData } from '#p/models/api'
+
+const secondaryHeight = `${100 / (sampleData.perspectives.length - 1) / 16 * 9}vw`
 </script>
