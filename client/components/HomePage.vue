@@ -1,11 +1,11 @@
 <template>
-	<div class="h-full flex flex-col">
-		<div id="primary-stream" class="flex-grow w-full" />
-		<div class="flex w-full overflow-y-hidden" :style="{ height: secondaryHeight }">
-			<div id="secondary-streams" class="w-full h-64 flex" />
-		</div>
+<div class="h-full flex flex-col">
+	<div id="primary-stream" class="flex-grow w-full" />
+	<div class="flex w-full overflow-y-hidden" :style="{ height: secondaryHeight }">
+		<div id="secondary-streams" class="w-full h-64 flex" />
 	</div>
-	<TwitchTeleport />
+</div>
+<TwitchTeleport />
 </template>
 
 <script setup lang="ts">

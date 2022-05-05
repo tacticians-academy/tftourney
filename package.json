@@ -45,6 +45,9 @@
 			"project": [
 				"tsconfig.eslint.json"
 			]
+		},
+		"globals": {
+			"Twitch": "readonly"
 		}
 	},
 	"eslintIgnore": [

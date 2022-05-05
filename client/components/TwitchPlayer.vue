@@ -1,5 +1,5 @@
 <template>
-	<div ref="containerEl" :class="isPrimary ? 'player-primary' : 'player-secondary'" />
+<div ref="containerEl" :class="isPrimary ? 'player-primary' : 'player-secondary'" />
 </template>
 
 <script setup lang="ts">
