@@ -3,6 +3,7 @@
 
 [build]
 	command = "npx pnpm i --store=node_modules/.pnpm-store && npm run client:build"
+	publish = "~$dist/public"
 
 [[redirects]]
 	from = "/*"
